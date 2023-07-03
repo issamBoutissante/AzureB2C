@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AzureB2C.Mobile.ScopeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Scope View">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" IsVisible="False" />
+    </Shell.BackButtonBehavior>
+    <VerticalStackLayout>
+        <Label
+            FontSize="26"
+            HorizontalOptions="Center"
+            Text="Azure Active Directory B2C" />
+        <Label
+            Padding="0,0,0,20"
+            FontSize="26"
+            HorizontalOptions="Center"
+            Text="MAUI sample" />
+        <Label
+            Padding="0,20,0,20"
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="Token expires on"
+            VerticalOptions="Center" />
+        <Label
+            x:Name="ExpiresAt"
+            Padding="0,0,0,20"
+            FontSize="16"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <Label
+            Padding="0,20,0,0"
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="Scopes found in access token"
+            VerticalOptions="Center" />
+        <ListView x:Name="Scopes" ItemsSource="{Binding AccessTokenScopes}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0,0,0,0">
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Text="{Binding}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            x:Name="SignOutButton"
+            Clicked="SignOutButton_Clicked"
+            HorizontalOptions="Center"
+            Text="Sign Out" />
+    </VerticalStackLayout>
+</ContentPage>
